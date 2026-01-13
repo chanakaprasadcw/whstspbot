@@ -72,9 +72,23 @@ module.exports = {
   // WhatsApp client settings
   client: {
     // Puppeteer args for headless browser
-    puppeteerArgs: ['--no-sandbox', '--disable-setuid-sandbox'],
+    puppeteerArgs: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--no-first-run',
+      '--no-zygote',
+      '--disable-gpu'
+    ],
 
     // Session path (where auth data is stored)
     sessionPath: './.wwebjs_auth',
+
+    // Optional: Path to Chrome/Chromium executable
+    // Uncomment and set if you need to use a specific Chrome installation
+    // executablePath: '/usr/bin/google-chrome-stable',
+    // executablePath: '/usr/bin/chromium-browser',
+    // executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', // Windows
   }
 };

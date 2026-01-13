@@ -4,8 +4,9 @@
   "description": "Automatic WhatsApp sending and reply system using WhatsApp Web",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node start.js",
+    "dev": "nodemon index.js",
+    "direct": "node index.js"
   },
   "keywords": [
     "whatsapp",

@@ -3,13 +3,20 @@ const qrcode = require('qrcode-terminal');
 const config = require('./config');
 
 // Initialize the WhatsApp client
+const puppeteerConfig = {
+  args: config.client.puppeteerArgs
+};
+
+// Add executablePath if specified in config
+if (config.client.executablePath) {
+  puppeteerConfig.executablePath = config.client.executablePath;
+}
+
 const client = new Client({
   authStrategy: new LocalAuth({
     dataPath: config.client.sessionPath
   }),
-  puppeteer: {
-    args: config.client.puppeteerArgs
-  }
+  puppeteer: puppeteerConfig
 });
 
 // Store for scheduled message intervals

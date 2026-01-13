@@ -16,19 +16,74 @@ An automatic WhatsApp messaging bot built with Node.js that can send automated m
 - Node.js (v14 or higher)
 - npm or yarn
 - A WhatsApp account
-- Chrome/Chromium browser (installed automatically with Puppeteer)
+- Chrome/Chromium browser (see installation below)
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the repository
 ```bash
 git clone <repository-url>
 cd whstspbot
 ```
 
-2. Install dependencies:
+### 2. Install Chrome/Chromium (if not already installed)
+
+**Ubuntu/Debian:**
+```bash
+# Google Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+# OR Chromium
+sudo apt-get install chromium-browser
+```
+
+**macOS:**
+```bash
+# Using Homebrew
+brew install --cask google-chrome
+```
+
+**Windows:**
+Download and install from [https://www.google.com/chrome/](https://www.google.com/chrome/)
+
+### 3. Install dependencies
+
+**Option A: With Puppeteer's bundled Chromium (recommended)**
 ```bash
 npm install
+```
+
+**Option B: Skip Chromium download (if you have Chrome/Chromium installed)**
+```bash
+PUPPETEER_SKIP_DOWNLOAD=true npm install
+```
+
+If you skip the download, you'll need to configure the Chrome path in `config.js`:
+```javascript
+client: {
+  executablePath: '/usr/bin/google-chrome-stable',  // or your Chrome path
+  // ...
+}
+```
+
+### 4. Find your Chrome executable path (if needed)
+
+**Linux:**
+```bash
+which google-chrome-stable
+which chromium-browser
+```
+
+**macOS:**
+```bash
+/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+```
+
+**Windows:**
+```
+C:\Program Files\Google\Chrome\Application\chrome.exe
+C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
 ```
 
 ## Configuration
@@ -207,10 +262,12 @@ bot: {
 ```
 whstspbot/
 ├── index.js           # Main bot application
+├── start.js           # Starter script with pre-flight checks
 ├── config.js          # Configuration file
-├── package.json       # Dependencies
-├── .gitignore        # Git ignore rules
-└── README.md         # Documentation
+├── package.json       # Dependencies and scripts
+├── .gitignore         # Git ignore rules
+├── .env.example       # Environment variables template
+└── README.md          # Documentation
 ```
 
 ## Contributing
